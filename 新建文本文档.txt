@@ -1,0 +1,29 @@
+ private void XtraForm1_Load(object sender, EventArgs e)
+        {
+            d.Add("湖北省", "武汉市，襄阳市，黄石市，黄冈市，鄂州市");
+            d.Add("湖南省", "长沙市，常德市，岳阳市，衡阳市，湘潭市");
+            d.Add("北京市", "朝阳区，东城区，西城区，海淀区，玄武区");
+            foreach (KeyValuePair<string, string> item in d)
+            {
+                cbo1.Items.Add(item.Key);
+            }
+            cbo1.SelectedIndex = 0;
+        }
+
+        private void comboBox1_BindingContextChanged(object sender, EventArgs e)
+        {
+
+        }
+        Dictionary<String, String> d = new Dictionary<string, string>();
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {//清空内容
+            cbo2.Items.Clear();
+            string str = cbo1.SelectedItem.ToString();
+            //把值拆分成多个字符串
+            string[] str1 = d[str].Split('，');
+            cbo2.Items.AddRange(str1);
+            cbo2.SelectedIndex = 0;
+        }
+
+        
+    }
